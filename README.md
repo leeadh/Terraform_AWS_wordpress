@@ -1,6 +1,6 @@
 # Terraform_AWS_wordpress
 
-![stack Overflow](https://github.com/leeadh/Terraform_AWS_wordpress/blob/master/Presentation2.jpg)
+![architecture diagram 1](https://github.com/leeadh/Terraform_AWS_wordpress/blob/master/architecture_diagram.jpg)
 
 
 To run 
