@@ -1,3 +1,5 @@
+
+# define group which allows SSH access
 resource "aws_security_group" "allow_ssh" {
   name = "allow_all"
   description = "Allow inbound SSH traffic"
@@ -11,13 +13,15 @@ resource "aws_security_group" "allow_ssh" {
   }
 
   tags {
-    Name = "Allow SSH"
+    Name = "Web Server allow SSH"
   }
 }
 
+
+# define group which allows HTTP traffic
 resource "aws_security_group" "web_server" {
   name = "web server"
-  description = "Allow HTTP and HTTPS traffic in, browser access out."
+  description = "Allow HTTP traffic in, browser access out."
   vpc_id = "${aws_vpc.myapp.id}"
 
   ingress {
@@ -33,11 +37,14 @@ resource "aws_security_group" "web_server" {
       protocol = "-1"
       cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags{
+    Name = "Web Server allow HTTP"
+  }
 }
 
 
-# Our elb security group to access
-# the ELB over HTTP
+# Our elb security group to access the ELB over HTTP
 resource "aws_security_group" "elb" {
   name        = "elb_sg"
   description = "Used in the terraform"
@@ -62,10 +69,14 @@ resource "aws_security_group" "elb" {
 
   # ensure the VPC has an Internet gateway or this step will fail
   depends_on = ["aws_internet_gateway.gw"]
+
+  tags{
+    Name = "ELB HTTP access"
+  }
 }
 
 
-
+# access group for SQL RDS
 resource "aws_security_group" "myapp_mysql_rds" {
   name = "sec group mysql"
   description = "Allow access to MySQL RDS"
@@ -83,5 +94,9 @@ resource "aws_security_group" "myapp_mysql_rds" {
       to_port = 65535
       protocol = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags{
+    Name = "RDS access"
   }
 }
