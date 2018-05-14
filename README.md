@@ -11,3 +11,4 @@ To run
 - terraform plan
 - terraform apply
 
+Please note that a better design should be where the rds is launched in the private instead of the public subnets. In this case you would need to create a nat gateway to direct traffic from the public to private subnets. 
