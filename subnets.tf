@@ -1,5 +1,3 @@
-
-# public subnet 1A
 resource "aws_subnet" "public_1a" {
     vpc_id = "${aws_vpc.myapp.id}"
     cidr_block = "10.100.0.0/24"
@@ -11,7 +9,6 @@ resource "aws_subnet" "public_1a" {
     }
 }
 
-# public subnet 1B
 resource "aws_subnet" "public_1b" {
     vpc_id = "${aws_vpc.myapp.id}"
     cidr_block = "10.100.1.0/24"
@@ -24,7 +21,6 @@ resource "aws_subnet" "public_1b" {
 }
 
 
-# IGW
 resource "aws_internet_gateway" "gw" {
     vpc_id = "${aws_vpc.myapp.id}"
 
@@ -33,7 +29,7 @@ resource "aws_internet_gateway" "gw" {
     }
 }
 
-# IGW route table
+
 resource "aws_route_table" "pub_igw_route_table" {
     vpc_id = "${aws_vpc.myapp.id}"
     route {
