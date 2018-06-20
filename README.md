@@ -4,11 +4,14 @@
 
 
 To run 
-1) First go to the provider file and fill in the secret and access key of your account. 
+1) First go to the provider file and fill in the secret and access key of your account. (Please add in your AWS secret KEY and AWS Access KEY to provider + bootstrap.tpm)
 2) Please note that this is using AP-Southeast-1. Do change if you want to use other regions
 3) After this cd to directory and then perform following steps
 - terraform init
 - terraform plan
 - terraform apply
+4) The docker logs for both EC2 instances are piped into cloud watch 
 
 Please note that a better design should be where the rds is launched in the private instead of the public subnets. In this case you would need to create a nat gateway to direct traffic from the public to private subnets. 
+
+
